@@ -6,7 +6,7 @@ const ticketMasterAPI = axios.create({
 });
 
 const fanFinderAPI = axios.create({
-  baseURL: "https://fanfinder-api-tzm2.onrender.com/api"
+  baseURL: "https://fan-finder-be.onrender.com/api"
   
 })
 

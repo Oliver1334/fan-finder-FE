@@ -17,6 +17,11 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 // Here is the bottom tab navigation
+const UserProfileWrapper = ({ route }) => {
+  const user = route?.params?.user;
+  return <UserProfile user={user} />;
+};
+
 
 export const Navigation = ({ user }) => {
   return (
@@ -81,9 +86,9 @@ export const Navigation = ({ user }) => {
           }}
         />
         <Tab.Screen
-          initialParams={{ user }}
           name="Profile"
-          component={UserProfile}
+          component={UserProfileWrapper}
+          initialParams={{ user }}
           options={{
             headerStyle: {
               backgroundColor: "#4b006e",
