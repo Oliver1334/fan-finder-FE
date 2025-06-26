@@ -3,13 +3,14 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "@rneui/base";
 import { useFonts } from "expo-font";
 
-export const UserProfile = ({ route }) => {
+export const UserProfile = ({ user }) => {
   const [fontsLoaded] = useFonts({
-    "Inter-SemiBoldItalic":
-      "https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12",
+    'Inter-Regular': require('../assets/fonts/Inter-VariableFont_opsz,wght.ttf'),
+  'Inter-Italic': require('../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf'),
   });
 
   if (!fontsLoaded) {
+    console.log("Fonts not loaded in UserProfile")
     return null;
   }
 
@@ -22,7 +23,7 @@ export const UserProfile = ({ route }) => {
           // source={{ uri: `${props.avatar}` }}
         />
 
-        <Text style={styles.Username}>{route.params.user.displayName}</Text>
+        <Text style={styles.Username}>{user.displayName}</Text>
       </View>
 
       <View style={styles.UpcomingGigs}>
@@ -104,6 +105,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 100,
   },
   FontItalic: {
-    fontFamily: "Inter-SemiBoldItalic",
+    fontFamily: "Inter-Italic",
   },
 });
