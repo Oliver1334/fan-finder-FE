@@ -11,8 +11,8 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import { useState, useEffect } from "react";
 import { getGigs } from "../utils/api";
+import { mapStyle } from "../mapstyles";
 const customMarker = require("../assets/custom_marker.png");
-import { convertToFriendlyDate } from "../utils/functions";
 
 export const Map = ({ navigation }) => {
   // check if we have the users location, so we don't immediately make the ticketmaster API call
@@ -66,6 +66,7 @@ export const Map = ({ navigation }) => {
           showsMyLocationButton={true}
           showsUserLocation={true}
           style={styles.map}
+          customMapStyle={mapStyle}
           initialRegion={{
             //delta values - the higher the number, the more zoomed out
             latitude: userLat,
@@ -75,6 +76,7 @@ export const Map = ({ navigation }) => {
           }}
         >
           {fetchedGigs.map((gig, index) => {
+            
             return (
               <Marker
                 key={index}
@@ -83,25 +85,24 @@ export const Map = ({ navigation }) => {
                   longitude: Number(gig._embedded.venues[0].location.longitude),
                 }}
               >
-                <Image
+                 {/* <Image
                   source={customMarker}
                   style={{ height: 45, width: 45 }}
                 />
-                <Callout
+    */}
+
+
+
+   <Callout
                   // style={{ height: 100, width: 160 }}
-                  style={{ width: 150, backgroundColor: "white" }}
+                  style={{ width: 200 }}
                   onPress={() =>
                     navigation.navigate("Current Gig", { msg: `${gig.id}` })
                   }
                 >
                   <View>
                     <Text style={styles.GigName}>{gig.name}</Text>
-                    <Text style={styles.GigStart}>
-                      On: {convertToFriendlyDate(gig.dates.start.localDate)}
-                    </Text>
-                    <Text style={styles.GigStart}>
-                      At: {gig.dates.start.localTime?.slice(0, 5)}
-                    </Text>
+                    <Text>Start time: {gig.dates.start.localTime}</Text>
                   </View>
                 </Callout>
               </Marker>
@@ -154,8 +155,8 @@ const styles = StyleSheet.create({
   Callout: {
     flexDirection: "row",
     alignSelf: "flex-start",
-    backgroundColor: "#ffffff",
-    borderRadius: 10,
+    backgroundColor: "#fff",
+    borderRadius: 6,
     borderColor: "#ccc",
   },
   ActivityIndicator: {
