@@ -30,7 +30,6 @@ export const ForumCard = ({ route }) => {
     postComment({ id, commentText }).then((returnedComment) => {
       setCommentText("");
       setComments((currentComments) => {
-        console.log(returnedComment, "returned comment in forumcard");
         return [returnedComment, ...currentComments];
       });
     });
@@ -40,7 +39,6 @@ export const ForumCard = ({ route }) => {
     getGigComments(id).then((data) => {
       setComments(data.reverse());
       setHaveCommentsLoaded(true);
-      console.log(comments);
     });
   }, []);
 
@@ -66,8 +64,6 @@ export const ForumCard = ({ route }) => {
           <Text style={styles.LoadingComments}>loading comments...</Text>
         </>
       );
-
-      // return <Text>comments loading... please wait!</Text>;
     } else if (haveCommentsLoaded && comments.length === 0) {
       return (
         <Text style={styles.NoComments}>
@@ -97,9 +93,6 @@ export const ForumCard = ({ route }) => {
           value={commentText}
           onSubmitEditing={() => submitComment()}
           style={styles.textInput}
-          // multiline={true}
-          // numberOfLines={4} // necessary for android only
-          // blurOnSubmit={true} // unnecessary as taken care of within submitComment via ref
         />
         <Button
           style={styles.sendButton}
@@ -109,7 +102,6 @@ export const ForumCard = ({ route }) => {
             submitComment();
           }}
           radius="lg"
-          // size="lg"
         />
       </View>
 
@@ -158,17 +150,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#4b006e",
     fontSize: 24,
-    // justifyContent: "center",
-    // alignItem: "center",
   },
 
   ScrollView: {
     backgroundColor: "white",
     width: "100%",
-    // borderColor: "black",
     borderRadius: 10,
-    // borderStyle: "solid",
-    // borderWidth: 5,
     marginVertical: 5,
   },
   ActivityIndicator: {
@@ -191,7 +178,6 @@ const styles = StyleSheet.create({
   SendContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "#4b006e",
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
@@ -200,7 +186,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textInput: {
-    // marginTop: 5,
     width: "80%",
     height: 40,
     padding: 7,

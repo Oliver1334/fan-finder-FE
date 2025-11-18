@@ -55,8 +55,6 @@ export const getGigComments = (gigId) => {
 };
 
 export const postComment = ({ id, commentText }) => {
-  console.log(id, "id from api");
-  console.log(commentText, "comment from api");
   return fanFinderAPI
     .post(`/gigs/${id}/comments`, {
       gig_id: id,
@@ -65,7 +63,6 @@ export const postComment = ({ id, commentText }) => {
       created_at: new Date(),
     })
     .then((results) => {
-      console.log(results.data.comment, "results in api");
       return results.data.comment;
     })
     .catch((err) => {
@@ -74,11 +71,9 @@ export const postComment = ({ id, commentText }) => {
 };
 
 export const getUserGigs = () => {
-  console.log("gigs");
   return fanFinderAPI
     .get(`/users/Team_Express/gigs`)
     .then((results) => {
-      // console.log(results.data.gigs, "these are the users gigs");
       return results.data.gigs;
     })
     .catch((err) => {
@@ -87,22 +82,18 @@ export const getUserGigs = () => {
 };
 
 export const patchUserGigs = (gigId) => {
-  // console.log("doing a patch to users gigs");
   return fanFinderAPI
     .patch("/users/Team_Express/gigs", { gig_id: gigId })
     .then((result) => {
-      // console.log("hi from line 92")
       return result.data;
     });
 };
 
 
 export const getAllAttendees = (gigId) => {
-  // console.log("getting all attendees");
   return fanFinderAPI
     .get(`/gigs/${gigId}/fans`)
     .then((results) => {
-      //  console.log(results.data.fans, "these are users going to this gig");
       return results.data.fans;
     })
     .catch((err) => {
@@ -110,35 +101,15 @@ export const getAllAttendees = (gigId) => {
     });
 };
 
-// export const getGigComments = (gigId) => {
-//   let path = `/gigs/${gigId}/comments`;
-//   return fanFinderAPI.get(`/gigs/${gigId}/comments`).then((results) => {
-//     return results.data.comments;
-//   });
-// };
-// export const getGigById = (gig_id) => {
-//   let path = `${gig_id}?`;
-//   return ticketMasterAPI.get(`/${path}apikey=${apiKey}`).then((results) => {
-//     return results.data;
-//   });
-// };
-
-// fanfinder api
-
 export const getUserChatIds = (user = "Team_Express") => {
-
   return fanFinderAPI
     .get(`/users/${user}/chats`)
     .then((results => {
-      console.log(results.data.chats, "api results")
       return results.data.chats
     }))
-
-  // return ["chat-1", "chat-2", "chat-3"];
 }
 
 export const getUsersByChatId = (id = "chat-1") => {
-// need  to stop using this endpoint
   const chats = {
     "chat-1": ["testUser", "Geoff"],
     "chat-2": ["testUser", "Kate"],
@@ -158,14 +129,11 @@ export const getChatHistoryById = (id = "chat-1") => {
 }
 
 export const postMessageToChat = (message, user, chat_id) => {
-  console.log('trying to post message : ', message, user, chat_id )
   return fanFinderAPI
     .post(`/users/${user}/${chat_id}`, {"message": message})
     .then((result)=>{
-      console.log(result.status, "<sent a message?")
       return result
     })
-
 }
 
 export const getSocketServerAddress = () => {

@@ -1,6 +1,3 @@
-// THIS IS THE SINGLE GIG CARD
-// DO NOT TOUCH STATES INVOLVING GIGS, (This works (: )
-
 import React from "react";
 import { useState, useEffect } from "react";
 import {
@@ -28,10 +25,7 @@ const SingleGigCard = ({ route, navigation }) => {
 
   const id = route.params.msg;
 
-  console.log(gigId + " <<< gigId from state in SingleGigCard");
-
   const addToUsersGigs = () => {
-    console.log("you clicked the button to add a gig to users gigs");
     patchUserGigs(gigId).then((res) => {
       setUserAttending(true);
       checkAllUsersGoing();
@@ -40,7 +34,6 @@ const SingleGigCard = ({ route, navigation }) => {
 
   const checkUserGigs = () => {
     return getUserGigs().then((res) => {
-      console.log(res, "single card res");
       if (res.includes(gigId) === true) {
         setUserAttending(true);
       }
@@ -48,9 +41,7 @@ const SingleGigCard = ({ route, navigation }) => {
   };
 
   const checkAllUsersGoing = () => {
-    // api call to check all users going, display them somewhere on page
     getAllAttendees(gigId).then((results) => {
-      console.log(results, "hi from line 48");
       setAllUsersAttending(results);
       setAttendingUsersLoaded(true);
     });
@@ -61,16 +52,12 @@ const SingleGigCard = ({ route, navigation }) => {
     if (gigId !== "") {
       checkAllUsersGoing();
       checkUserGigs();
-      console.log(allUsersAttending + " <<< all users attending line 63");
-      // console.log(route.params.msg)
       getGigById(id)
         .then((results) => {
-          // console.log(results)
           setGigInfo(results);
           setLoading(false);
         })
         .catch((err) => {
-          // some error handling here
           console.log(err);
         });
     }
@@ -93,13 +80,10 @@ const SingleGigCard = ({ route, navigation }) => {
         <Text style={styles.NoUsersGoingText}>None yet... be the first!</Text>
       );
     } else {
-      console.log(allUsersAttending[0].displayName, "<<<<sgc users");
-      console.log(allUsersAttending.length, "arr length");
       return (
         <>
           <ScrollView style={styles.ScrollView}>
             {allUsersAttending.map((attendee) => {
-              console.log(attendee, "attendee<<<<<");
               return (
                 <UserCard
                   key={attendee.displayName}
@@ -108,18 +92,14 @@ const SingleGigCard = ({ route, navigation }) => {
                 />
               );
             })}
-            {console.log(allUsersAttending)}
           </ScrollView>
         </>
       );
     }
   };
 
-  // need to check the above dep. array
-
   if (loading) return <Text>Loading...</Text>;
   return (
-    // <ScrollView style={styles.screen}>
     <View style={styles.screen}>
       <Text style={styles.titleText}>{gigInfo.name}</Text>
       <Text style={styles.bodyText}>On: {gigInfo.dates.start.localDate}</Text>
@@ -138,7 +118,6 @@ const SingleGigCard = ({ route, navigation }) => {
         size="lg"
         titleStyle={{ color: "white" }}
         buttonStyle={{
-          
           width: 325,
           borderColor: "#4b006e",
           backgroundColor: "#4b006e",
@@ -289,7 +268,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
   },
-  GigInfoContainer: {
-    // marginVertical: 10,
-  },
+  GigInfoContainer: {},
 });

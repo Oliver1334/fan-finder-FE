@@ -28,12 +28,7 @@ export const SingleChat = ({ route }) => {
   useEffect(() => {
     getChatHistoryById(chatId)
       .then((results) => {
-        console.log(results);
-        // results.forEach((result)=>{
-        //     parseInt(result._id)
-        // })
         setMessages(results);
-        console.log(loading);
         setLoading(false);
       })
       .catch((err) => {
@@ -42,7 +37,6 @@ export const SingleChat = ({ route }) => {
   }, [handlePostMessage]);
 
   const handlePostMessage = () => {
-    console.log("sending message :", text);
     setMessages([...messages, { message: text, user: user }]);
     postMessageToChat(text, user, chatId);
     setText("");
@@ -50,16 +44,6 @@ export const SingleChat = ({ route }) => {
       scrollViewRef.current.scrollToEnd({ animated: true });
     }, 200);
   };
-  
-
-  // useEffect(()=>{
-  //     socket.on('send_message', (data) => {
-  //         console.log('getting message')
-  //         setMessages(...messages,data)
-  //         // Add new messages to list of messages
-  //     })
-  //     console.log(`socket connected? ${socket.connected}`)
-  // }, [socket])
 
   return (
     <KeyboardAvoidingView
@@ -100,7 +84,6 @@ export const SingleChat = ({ route }) => {
                 </View>
               );
             }
-            // console.log(msg)
           })
         )}
       </ScrollView>
@@ -121,10 +104,8 @@ export const SingleChat = ({ route }) => {
           title={"send"}
           onPress={handlePostMessage}
           color="#4b006e"
-          // size="lg"
           radius="lg"
           marginLeft="50"
-          // buttonStyle={{ width: 250 }}
         ></Button>
       </View>
     </KeyboardAvoidingView>
@@ -135,19 +116,14 @@ const styles = StyleSheet.create({
   SendContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "#4b006e",
     paddingTop: 10,
     paddingBottom: 10,
     marginTop: 5,
-    
-    
   },
   sendButton: {
     marginLeft: 10
-
   },
   textInput: {
-    // marginTop: 5,
     width: "80%",
     height: 40,
     padding: 7,
@@ -163,14 +139,11 @@ const styles = StyleSheet.create({
 
   otherUser: {
     fontWeight: "bold",
-    // backgroundColor: '#00bfff',
     textAlign: "left",
     marginTop: 10,
     fontSize: 11,
-    // textAlign: 'left'
   },
   otherUserMessage: {
-    // backgroundColor: '#00bfff',
     alignSelf: "flex-start",
     marginRight: 30,
     paddingTop: 8,
@@ -185,7 +158,6 @@ const styles = StyleSheet.create({
   },
   loggedInUser: {
     fontWeight: "bold",
-    // backgroundColor: '#00bfff',
     alignSelf: "flex-end",
     marginTop: 10,
     fontSize: 11,
@@ -205,15 +177,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     shadowOffset: { width: 5, height: 5 },
     shadowColor: "black",
-    // backgroundColor: "green"
   },
   container: {
     paddingLeft: 5,
     paddingRight: 5,
     marginLeft: 5,
     marginRight: 5,
-    
-    // backgroundColor: "blue"
   },
   ActivityIndicator: {
     justifyContent: "center",
