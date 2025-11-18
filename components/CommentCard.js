@@ -3,14 +3,12 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import { relativeTimeAndDate } from "../utils/functions";
 
 export const CommentCard = (props) => {
-  console.log(props.comment.text);
   const commentText = props.comment.text;
   return (
     <View style={styles.CommentCard}>
       <Image
         style={styles.avatarImg}
-        source={require("../assets/avatars/purpleDefault.png")} // temp hardcode a 'nicer' avatar
-        // source={{ uri: `${props.avatar}` }}
+        source={require("../assets/avatars/purpleDefault.png")}
       />
       <View style={styles.CommentTextContainer}>
         <Text style={styles.commentText}>{commentText}</Text>

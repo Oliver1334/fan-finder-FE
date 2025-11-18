@@ -10,7 +10,6 @@ export const UserProfile = ({ user }) => {
   });
 
   if (!fontsLoaded) {
-    console.log("Fonts not loaded in UserProfile")
     return null;
   }
 
@@ -19,8 +18,7 @@ export const UserProfile = ({ user }) => {
       <View style={styles.UserContainer}>
         <Image
           style={styles.avatarImg}
-          source={require("../assets/avatars/purpleDefault.png")} // temp hardcode a 'nicer' avatar
-          // source={{ uri: `${props.avatar}` }}
+          source={require("../assets/avatars/purpleDefault.png")}
         />
 
         <Text style={styles.Username}>{user.displayName}</Text>
@@ -45,12 +43,9 @@ export const UserProfile = ({ user }) => {
         key={3}
         style={styles.SignOutButton}
         title="SIGN OUT"
-        // onPress={handlePostMessage}
         color="red"
-        // size="lg"
         radius="lg"
         marginRight="40"
-        // buttonStyle={{ width: 250 }}
       ></Button>
     </View>
   );
@@ -61,8 +56,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "lightgrey",
-
     marginBottom: 70,
   },
   UserProfile: {
