@@ -80,4 +80,4 @@ This app was developed collaboratively using:
 
 ## Team
 
-Developed by Team Express during Northcoders bootcamp. Original backend repository maintained here: [Fan Finder Backend](https://github.com/jbhall4291/fan-finder-backend)
+Developed by Team Express during Northcoders bootcamp. Original frontend repository maintained here: [Fan Finder Frontend](https://github.com/jbhall4291/fan-finder-backend)
